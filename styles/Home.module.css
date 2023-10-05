@@ -1,0 +1,35 @@
+.contactPage {
+}
+
+.loading {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.authButton {
+  display: block;
+  margin-top: 24px;
+  font-size: 16px;
+  padding: 4px;
+}
+
+.contactSearchOption {
+  width: 100%;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.contactSearchOptionAvatar {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+}
+
+.contactSearchOptionName {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

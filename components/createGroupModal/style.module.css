@@ -1,0 +1,18 @@
+.addTagButton {
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.addTagIcon {
+  font-size: 24px;
+  font-weight: normal;
+}
+
+.addTagButton:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}

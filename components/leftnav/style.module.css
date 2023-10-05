@@ -1,0 +1,80 @@
+.leftNav {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  width: 260px;
+  padding-top: 30px;
+}
+
+.name {
+  font-size: 20px;
+  font-weight: 500;
+  text-align: center;
+  margin-bottom: 20px;
+  line-height: 46px;
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  padding: 0 26px;
+  box-sizing: border-box;
+  height: 40px;
+  font-size: 14px;
+}
+
+.groupOperations {
+  display: none;
+  padding-right: 8px;
+}
+
+.groupLink:hover .groupMemberCount {
+  display: none;
+}
+
+.groupLink:hover .groupOperations {
+  display: flex;
+  gap: 16px;
+}
+
+.groupLinkContent {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.groupMemberCount {
+  width: 30px;
+  text-align: center;
+}
+
+.tagIcon {
+  margin-right: 10px;
+}
+
+.linkIcon {
+  margin-right: 20px;
+}
+
+.link:hover,
+.linkActive {
+  background-color: rgb(241, 243, 244);
+  outline: 1px solid transparent;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+.linkWrapper {
+  margin-top: 10px;
+}
+
+.linkHeader {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 40px;
+  box-sizing: border-box;
+  padding: 0 26px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
