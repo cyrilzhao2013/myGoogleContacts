@@ -7,15 +7,15 @@ export class Group extends BaseModule<IGroup, never> {
     await GroupAPI.deleteGroup({ resourceName: this.get("resourceName") });
   }
 
-  async addContact(contactResourceName: string) {
+  async addContacts(contactResourceNames: string[]) {
     await GroupAPI.updateContactsInGroup(this.get("resourceName"), {
-      resourceNamesToAdd: [contactResourceName],
+      resourceNamesToAdd: contactResourceNames,
     });
   }
 
-  async removeContact(contactResourceName: string) {
+  async removeContacts(contactResourceNames: string[]) {
     await GroupAPI.updateContactsInGroup(this.get("resourceName"), {
-      resourceNamesToRemove: [contactResourceName],
+      resourceNamesToRemove: contactResourceNames,
     });
   }
 

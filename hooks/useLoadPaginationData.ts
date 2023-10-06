@@ -15,10 +15,6 @@ export function useLoadPaginationData<T>(props: IProps<T>) {
   const [list, setList] = useState<T[]>([]);
   const [hasMore, setHasMore] = useState<boolean>(true);
 
-  useEffect(() => {
-    console.info("cyril nextPageToken changed: ", nextPageToken);
-  }, [nextPageToken]);
-
   const fetchNext = async () => {
     if (loading || !hasMore) {
       return;
@@ -27,16 +23,13 @@ export function useLoadPaginationData<T>(props: IProps<T>) {
     try {
       setLoading(true);
 
-      console.info("cyril use nextPageToken: ", nextPageToken);
       const resp = await requestFunc({
         pageSize: pageSize,
         pageToken: nextPageToken,
       });
 
-      console.info("cyril resp dwqoijdoaw: ", resp.nextPageToken);
       if (!resp.results?.length || !resp.nextPageToken) {
         setHasMore(false);
-        return;
       }
 
       const newList = [...list, ...resp.results];
@@ -53,6 +46,8 @@ export function useLoadPaginationData<T>(props: IProps<T>) {
   };
 
   const reload = async () => {
+    console.trace("cyril");
+
     setList([]);
     setTotalCount(0);
     setNextPageToken(undefined);

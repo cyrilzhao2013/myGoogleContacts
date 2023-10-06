@@ -20,18 +20,23 @@ export function useAuth(props: IProps) {
   const dispatch = useDispatch();
   const { callback } = props;
 
-  const handleAuthClick = async () => {
-    await googleApi.auth();
-    dispatch(setAuthorized(true));
-
+  const fetchData = async () => {
     const { results: groups } = await Group.getCustomGroups();
     dispatch(setCustomGroups(groups));
 
     await callback();
   };
 
+  const handleAuthClick = async () => {
+    await googleApi.auth();
+    dispatch(setAuthorized(true));
+
+    await fetchData();
+  };
+
   const init = async () => {
     if (googleApiScriptLoaded || authorized) {
+      await fetchData();
       return;
     }
 

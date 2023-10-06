@@ -73,8 +73,6 @@ export function getGroupDetails(params: {
       groupFields: "clientData,groupType,memberCount,metadata,name",
     })
     .then((res: { result: IGroupApiData }) => {
-      console.info("cyril getGroupDetails res: ", res);
-
       return parseGroup(res.result);
     });
 }

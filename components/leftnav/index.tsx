@@ -40,8 +40,8 @@ export default function LeftNav() {
           <Link
             key={group.get("resourceName")}
             className={`${styles.link} ${styles.groupLink}`}
-            href={`/group?resourceName=${encodeURIComponent(
-              group.get("resourceName")
+            href={`/group/${encodeURIComponent(
+              group.get("resourceName").split("/")[1]
             )}`}
           >
             <TagFilled className={styles.linkIcon} />

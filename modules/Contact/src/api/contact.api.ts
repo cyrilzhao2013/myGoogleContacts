@@ -52,8 +52,6 @@ export function getContactsByResourceNames(params: {
           }[];
         };
       }) => {
-        console.info("cyril getContactsByResourceNames res: ", res);
-
         return res.result.responses.map((item) => {
           return parseContact(item.person);
         });
@@ -66,10 +64,6 @@ export function searchContacts(
     keyword: string;
   } & IPaginationReq
 ): Promise<IPaginationResp<IContact>> {
-  console.info(
-    "cyril (window as any).gapi.client.people: ",
-    (window as any).gapi.client.people.people
-  );
   return (window as any).gapi.client.people.people
     .searchContacts({
       query: params.keyword,
