@@ -127,9 +127,14 @@ export default function ContactTable(props: IProps) {
    * 自定义用户组下拉菜单中的某个用户组被点击时触发的回调函数
    * 用于对被选中的多个联系人批量新增/删除所在的某个自定义用户组
    *
-   * @param groupResourceNames    被点击的自定义用户组 resourceName 列表
+   * @param groupResourceNames    操作后的自定义用户组 resourceName 列表
    */
   const handleCustomGroupSelect = async (groupResourceNames: string[]) => {
+    console.info("cyril groupResourceNames: ", groupResourceNames);
+    console.info(
+      "cyril selectedGroupResourceNames: ",
+      selectedGroupResourceNames
+    );
     setGroupSelectorDropdownVisible(false);
 
     const tasks: Promise<void>[] = [];
@@ -147,6 +152,7 @@ export default function ContactTable(props: IProps) {
       .filter((resourceName) => {
         return !selectedGroupResourceNames.includes(resourceName);
       });
+    console.info("cyril addedGroupResourceNames: ", addedGroupResourceNames);
     addedGroupResourceNames.forEach((groupResourceName) => {
       const group = customGroups.find((item) => {
         return item.get("resourceName") === groupResourceName;
@@ -174,8 +180,12 @@ export default function ContactTable(props: IProps) {
     const deletedGroupResourceNames: string[] = groupResourceNames
       .concat(selectedGroupResourceNames)
       .filter((resourceName) => {
-        return groupResourceNames.includes(resourceName);
+        return !groupResourceNames.includes(resourceName);
       });
+    console.info(
+      "cyril deletedGroupResourceNames: ",
+      deletedGroupResourceNames
+    );
     deletedGroupResourceNames.forEach((groupResourceName) => {
       const group = customGroups.find((item) => {
         return item.get("resourceName") === groupResourceName;
