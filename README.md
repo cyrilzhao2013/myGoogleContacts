@@ -11,7 +11,19 @@
 
 开始前请先确保你的本地环境中安装了 [Nodejs](https://nodejs.org)(v16.14.2+) 运行环境。
 
-运行下面的命令来在本地运行此项目：
+clone 仓库代码到本地：
+
+```bash
+git clone git@github.com:cyrilzhao2013/myGoogleContacts.git
+```
+
+安装 npm 依赖
+
+```bash
+cd myGoogleContacts && npm install
+```
+
+依赖安装完成后，运行下面的命令来在本地运行此项目：
 
 ```bash
 npm run dev
