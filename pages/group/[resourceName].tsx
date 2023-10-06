@@ -21,17 +21,30 @@ import {
 export default function GroupPage() {
   const dispatch = useDispatch();
   const params = useParams();
-  // const resourceName = `contactGroups/${params?.resourceName}`;
   const resourceNameRef = useRef<string>();
   resourceNameRef.current = `contactGroups/${params?.resourceName}`;
 
+  /**
+   * 用户身份是否已认证
+   */
   const authorized = useSelector(selectAuthorized);
+  /**
+   * Google API 脚本是否已成功加载并初始化完毕
+   */
   const googleApiScriptLoaded = useSelector(selectGoogleApiScriptLoaded);
-
+  /**
+   * 当前用户组下的所有联系人列表
+   */
   const [contacts, setContacts] = useState<Contact[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
+  /**
+   * 当前用户组
+   */
   const [group, setGroup] = useImmer<Group | null>(null);
 
+  /**
+   * 页面初始化时获取用户组详情和联系人列表数据
+   */
   const fetchData = async () => {
     if (!resourceNameRef.current) {
       return;
@@ -62,12 +75,18 @@ export default function GroupPage() {
     }
   };
 
+  /**
+   * 页面初始化时先判断是否已授权身份认证，没有的话走授权流程，已授权则直接获取页面数据
+   */
   const { handleAuthClick } = useAuth({
     callback: async () => {
       await fetchData();
     },
   });
 
+  /**
+   * 从当前用户组中删除某个用户时，需要重新获取用户组列表数据以更新左侧导航栏中用户组内用户数的显示数量
+   */
   const reloadCustomGroups = async () => {
     const { results: groups } = await Group.getCustomGroups();
     dispatch(setCustomGroups(groups));

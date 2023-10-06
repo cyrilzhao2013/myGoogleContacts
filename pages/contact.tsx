@@ -26,16 +26,18 @@ export interface IContactOption extends IOption {
 }
 
 export default function ContactsPage() {
-  const authorized = useSelector(selectAuthorized);
-  const googleApiScriptLoaded = useSelector(selectGoogleApiScriptLoaded);
-  // const customGroups = useSelector(selectCustomGroups);
   const dispatch = useDispatch();
+  /**
+   * 用户身份是否已认证
+   */
+  const authorized = useSelector(selectAuthorized);
+  /**
+   * Google API 脚本是否已成功加载并初始化完毕
+   */
+  const googleApiScriptLoaded = useSelector(selectGoogleApiScriptLoaded);
   const [options, setOptions] = useState<IContactOption[]>([]);
   const [searching, setSearching] = useState<boolean>(false);
   const [contacts, setContacts] = useState<Contact[]>([]);
-  // const [searchResultContacts, setSearchResultContacts] = useState<Contact[]>(
-  //   []
-  // );
 
   const {
     list: contactsList,
@@ -117,7 +119,6 @@ export default function ContactsPage() {
       }
     });
 
-    console.info("cyril newContacts: ", newContacts);
     setContacts(newContacts);
   };
 

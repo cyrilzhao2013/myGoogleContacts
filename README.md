@@ -1,8 +1,17 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+这是一个基于 Next.js 的 web 应用，可供用户查询并操作自己的 Google 联系人列表。主要包含下列几项功能：
 
-## Getting Started
+- 展示联系人列表；
+- 搜索联系人；
+- 创建/删除自定义用户组；
+- 往自定义用户组中添加/删除联系人；
 
-First, run the development server:
+## 快速开始
+
+### 本地运行
+
+开始前请先确保你的本地环境中安装了 [Nodejs](https://nodejs.org)(v16.14.2+) 运行环境。
+
+运行下面的命令来在本地运行此项目：
 
 ```bash
 npm run dev
@@ -14,27 +23,53 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+然后打开浏览器访问 [http://localhost:3000](http://localhost:3000)，即可看到项目在本地运行的情况。
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+### 通过 Vercel 访问
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+你也可以通过在 Vercel 部署的地址：[https://my-google-contacts.vercel.app/contact](https://my-google-contacts.vercel.app/contact)来访问本项目的在线实例。
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## 使用介绍
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+本项目主要包含两个页面和一个侧边栏，它们主要的功能如下：
 
-## Learn More
+### 侧边栏
 
-To learn more about Next.js, take a look at the following resources:
+- 展示所有的自定义用户组列表；
+- 新增自定义用户组；
+- 删除自定义用户组；
+- 切换展示联系人列表页和自定义用户组详情页；
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 联系人列表页面
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- 展示所有联系人列表，支持分页滚动加载；
+- 通过页面上方的搜索框输入关键字搜索联系人；
+- 为选中的多个联系人批量添加/删除对应的自定义用户组（选择联系人后在页面右上角的下拉菜单中操作）；
 
-## Deploy on Vercel
+### 用户组详情页面
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- 展示当前自定义用户组下所有的联系人列表；
+- 将某个联系人从当前自定义用户组中移除；
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## 代码结构
+
+本项目代码结构主要分为三层：
+
+### View 层
+
+- 包含 pages 和 components 两部分；
+- 负责处理用户的输入，进行校验并展示逻辑处理后的内容；
+- 负责处理页面交互逻辑，例如页面跳转、显示弹窗、滚动加载等；
+
+### 业务逻辑层
+
+- 包含 modules 目录下的所有 .class 文件中的业务类；
+- 负责处理项目中的业务逻辑，包括 Google 实例初始化、用户身份校验等；
+- 负责处理 View 层获取到的用户输入数据，将其转化后提交给 API 层与后端进行交互；
+- 负责对后端接口返回的数据进行处理，转换为符合前端逻辑的数据格式，并做好数据封装之后提供给 View 层使用；
+
+### API 层
+
+- 包含 modules 目录下的所有 .api 文件中的接口函数；
+- 定义后端接口请求参数和返回值的字段类型；
+- 与后端接口进行交互，对获取到的数据进行预处理，并将预处理后的数据提交给业务逻辑层进行进一步的业务处理；
