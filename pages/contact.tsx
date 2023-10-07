@@ -4,10 +4,7 @@ import Image from "next/image";
 import SearchInput, { IOption } from "@/components/search-input";
 import { useEffect, useMemo, useState } from "react";
 import { Contact } from "@/modules/Contact";
-import { Group } from "@/modules/Group";
-import { useImmer } from "use-immer";
-import { googleApi } from "@/utils/google-api";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Spin } from "antd";
 import {
   selectAuthorized,
@@ -26,7 +23,6 @@ export interface IContactOption extends IOption {
 }
 
 export default function ContactsPage() {
-  const dispatch = useDispatch();
   /**
    * 用户身份是否已认证
    */
