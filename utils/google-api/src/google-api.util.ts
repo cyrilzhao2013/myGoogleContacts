@@ -6,11 +6,15 @@ const DISCOVERY_DOC =
 // included, separated by spaces.
 const SCOPES =
   "https://www.googleapis.com/auth/contacts https://www.googleapis.com/auth/directory.readonly";
-const CLIENT_ID = process.env.CLIENT_ID;
-const API_KEY = process.env.API_KEY;
+// const CLIENT_ID = process.env.CLIENT_ID;
+// const API_KEY = process.env.API_KEY;
 
-console.info("cyril CLIENT_ID: ", CLIENT_ID);
-console.info("cyril API_KEY: ", API_KEY);
+const CLIENT_ID =
+  "773422534968-negk04dbvd5907prmcmop2hj7q2rcse1.apps.googleusercontent.com";
+const API_KEY = "AIzaSyA6Ctq-2pXOVN6dahzS0TXEb8xRqhEvyZc";
+
+// console.info("cyril CLIENT_ID: ", CLIENT_ID);
+// console.info("cyril API_KEY: ", API_KEY);
 
 class GoogleAPI {
   private tokenClient: any;
